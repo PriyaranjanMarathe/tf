@@ -11,7 +11,7 @@ data "aws_ami" "app_ami" {
     values = ["hvm"]
   }
 
-  owners = [var.ami_filter.owner] # Bitnami
+  owners = [var.ami_filter.owner]
 }
 
 
@@ -23,7 +23,6 @@ module "blog_vpc" {
 
   azs             = ["us-west-2a","us-west-2b","us-west-2c"]
   public_subnets  = ["${var.environment.network_prefix}.101.0/24", "${var.environment.network_prefix}.102.0/24", "${var.environment.network_prefix}.103.0/24"]
-
 
   tags = {
     Terraform = "true"
@@ -51,7 +50,7 @@ module "blog_alb" {
   source  = "terraform-aws-modules/alb/aws"
   version = "~> 6.0"
 
-  name = {var.environment.name}  #"blog-alb"
+  name = "blog-alb"
 
   load_balancer_type = "application"
 
